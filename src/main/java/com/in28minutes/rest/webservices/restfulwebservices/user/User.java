@@ -1,30 +1,34 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import java.util.Objects;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(description = "All details about the user.")
 public class User {
 
     private Integer id;
 
     @Size(min = 2, message = "Name should have atleast 2 characters")
+    @ApiModelProperty(notes = "Birth date should be in the past.")
     private String name;
 
     @Past
+    @ApiModelProperty(notes = "Name should have atleast 2 characters.")
     private Date birthDate;
-
-    public User() {
-    }
 
     @Override
     public boolean equals(Object o) {
