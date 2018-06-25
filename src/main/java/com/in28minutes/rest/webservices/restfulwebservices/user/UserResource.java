@@ -51,4 +51,9 @@ public class UserResource {
 	return ResponseEntity.noContent().build();
     }
 
+    @GetMapping(value = "/{id}/posts")
+    public List<Post> retrieveAllPostsFromUser(@PathVariable("id") int id){
+	return userDaoService.findOne(id).getPosts();
+    }
+
 }
