@@ -1,3 +1,7 @@
-insert into user values (1, sysdate(), 'Bart');
-insert into user values (2, sysdate(), 'Lisa');
-insert into user values (3, sysdate(), 'Meg');
+insert into user values (10001, sysdate(), 'Bart');
+insert into user values (10002, sysdate(), 'Lisa');
+insert into user values (10003, sysdate(), 'Meg');
+
+insert into post values (11001, 'My first post', 10001);
+insert into post values (11002, 'My second post', 10001);
+insert into post values (11003, 'My third post', 10002);
