@@ -24,6 +24,9 @@ public class UserResource {
     @Autowired
     private UserDaoService userDaoService;
 
+    @Autowired
+    private PostService postService;
+
     @GetMapping
     public List<User> retrieveAllUsers(){
         return userDaoService.findAll();
@@ -54,6 +57,20 @@ public class UserResource {
     @GetMapping(value = "/{id}/posts")
     public List<Post> retrieveAllPostsFromUser(@PathVariable("id") int id){
 	return userDaoService.findOne(id).getPosts();
+    }
+
+    @PostMapping(value = "/{id}/posts")
+    public ResponseEntity<Void> createUser(@PathVariable("id") int id, @RequestBody @Valid Post post){
+
+	User user = userDaoService.findOne(id);
+	post.setUser(user);
+	postService.save(post);
+
+	user.getPosts().add(post);
+	userDaoService.save(user);
+
+	URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
+	return ResponseEntity.created(location).build();
     }
 
 }

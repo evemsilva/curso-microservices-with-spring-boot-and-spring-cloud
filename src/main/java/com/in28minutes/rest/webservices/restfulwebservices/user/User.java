@@ -38,7 +38,6 @@ public class User {
     @ApiModelProperty(notes = "Name should have atleast 2 characters.")
     private Date birthDate;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
 

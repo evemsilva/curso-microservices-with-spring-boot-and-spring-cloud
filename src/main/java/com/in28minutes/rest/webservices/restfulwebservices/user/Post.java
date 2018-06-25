@@ -1,8 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -17,10 +18,11 @@ import lombok.Setter;
 public class Post {
 
     @Id
+    @GeneratedValue
     private Integer id;
     private String description;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
